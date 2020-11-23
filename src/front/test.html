@@ -1,0 +1,542 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    
+    <link rel="stylesheet" href="css\bootstrap.min.css">
+    <link rel="stylesheet" href="css\styles.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>	
+	<script src="./js/testLogic.js"></script>
+
+    <title>Enfermedades Virales</title>
+  </head>
+  <body>
+    <div class="nav nav-fill justify-content-center py-4" style="background-color:#68a6b4;color:#fff;">
+        <h1>SINTOMATOLOGÍA DE LAS ENFERMEDADES VIRALES</h1>
+    </div>
+    <div class="container-fluid justify-content-center row py-4">
+        <div class="input-group col-6 my-1">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Ingresa tus datos:</span>
+            </div>
+            <input type="text" aria-label="First name" class="form-control" placeholder="Nombre y apellido" id="inp-nombre">
+            </div>
+        </div>
+
+        <div class="container-fluid justify-content-center row">
+            <div class="input-group col-6 mb-5 p-4 alert-success justify-content-center rounded-lg">
+                <p>Instrucciones: Selecciona la intensidad del síntoma dependiendo de cómo te sientas (DEFAULT: "sin síntoma").</p>
+                <table class="table table-success col-4">
+                    <tr>
+                        <td><img src="img/sonriente.png"></td>
+                        <td>Sin síntoma</td>
+                        <td><img src="img/sonrisa.png"></td>
+                        <td>Síntoma soportable</td>
+                        <td><img src="img/confuso.png"></td>
+                        <td>Síntoma molesto</td>
+                    </tr>
+                    <tr>
+                        <td><img src="img/triste.png"></td>
+                        <td>Síntoma moderado</td>
+                        <td><img src="img/angustia.png"></td>
+                        <td>Síntoma fuerte</td>
+                        <td><img src="img/muerto.png"></td>
+                        <td>Síntoma insoportable</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- FIEBRE -->
+        <div class="container-fluid justify-content-center row" id="div-fiebre">
+            <div class="btn-group btn-group-toggle col-6 row" data-toggle="buttons">
+                <h6 class="px-4 py-2 col-3">Fiebre</h6>
+                <label class="btn btn-secondary active" id="op1_fiebre">
+                    <input type="radio" name="options" id="option1" autocomplete="off" checked>
+                    <input type="image" name="options" id="option1" src="img/sonriente.png" autocomplete="off" checked>
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option2" autocomplete="off">
+                    <input type="image" name="options" id="option2" src="img/sonrisa.png" autocomplete="off">
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option3" autocomplete="off">
+                    <input type="image" name="options" id="option3" src="img/confuso.png" autocomplete="off">
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option4" autocomplete="off">
+                    <input type="image" name="options" id="option4" src="img/triste.png" autocomplete="off">
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option5" autocomplete="off">
+                    <input type="image" name="options" id="option5" src="img/angustia.png" autocomplete="off">
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option6" autocomplete="off">
+                    <input type="image" name="options" id="option6" src="img/muerto.png" autocomplete="off">
+                </label>
+            </div>
+        </div>
+
+        <!-- ESCALOFRÍOS -->
+        <div class="container-fluid justify-content-center row" id="div-escalofrios">
+            <div class="btn-group btn-group-toggle col-6 row mt-3" data-toggle="buttons">
+                <h6 class="px-4 py-2 col-3">Escalofríos</h6>
+                <label class="btn btn-secondary active">
+                    <input type="radio" name="options" id="option1" autocomplete="off">
+                    <input type="image" name="options" id="option1" src="img/sonriente.png" autocomplete="off" checked>
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option2" autocomplete="off">
+                    <input type="image" name="options" id="option2" src="img/sonrisa.png" autocomplete="off">
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option3" autocomplete="off">
+                    <input type="image" name="options" id="option3" src="img/confuso.png" autocomplete="off">
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option4" autocomplete="off">
+                    <input type="image" name="options" id="option4" src="img/triste.png" autocomplete="off">
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option5" autocomplete="off">
+                    <input type="image" name="options" id="option5" src="img/angustia.png" autocomplete="off">
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option6" autocomplete="off">
+                    <input type="image" name="options" id="option6" src="img/muerto.png" autocomplete="off">
+                </label>
+            </div>
+        </div>
+
+        <!-- NÁUSEAS -->
+        <div class="container-fluid justify-content-center row" id="div-nauseas">
+            <div class="btn-group btn-group-toggle col-6 row mt-3" data-toggle="buttons">
+                <h6 class="px-4 py-2 col-3">Náuseas</h6>
+                <label class="btn btn-secondary active">
+                    <input type="radio" name="options" id="option1" autocomplete="off">
+                    <input type="image" name="options" id="option1" src="img/sonriente.png" autocomplete="off" checked>
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option2" autocomplete="off">
+                    <input type="image" name="options" id="option2" src="img/sonrisa.png" autocomplete="off">
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option3" autocomplete="off">
+                    <input type="image" name="options" id="option3" src="img/confuso.png" autocomplete="off">
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option4" autocomplete="off">
+                    <input type="image" name="options" id="option4" src="img/triste.png" autocomplete="off">
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option5" autocomplete="off">
+                    <input type="image" name="options" id="option5" src="img/angustia.png" autocomplete="off">
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option6" autocomplete="off">
+                    <input type="image" name="options" id="option6" src="img/muerto.png" autocomplete="off">
+                </label>
+            </div>
+        </div>
+
+        <!-- VOMITO -->
+        <div class="container-fluid justify-content-center row" id="div-vomito">
+            <div class="btn-group btn-group-toggle col-6 row mt-3" data-toggle="buttons">
+                <h6 class="px-4 py-2 col-3">Vómito</h6>
+                <label class="btn btn-secondary active">
+                    <input type="radio" name="options" id="option1" autocomplete="off">
+                    <input type="image" name="options" id="option1" src="img/sonriente.png" autocomplete="off" checked>
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option2" autocomplete="off">
+                    <input type="image" name="options" id="option2" src="img/sonrisa.png" autocomplete="off">
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option3" autocomplete="off">
+                    <input type="image" name="options" id="option3" src="img/confuso.png" autocomplete="off">
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option4" autocomplete="off">
+                    <input type="image" name="options" id="option4" src="img/triste.png" autocomplete="off">
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option5" autocomplete="off">
+                    <input type="image" name="options" id="option5" src="img/angustia.png" autocomplete="off">
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option6" autocomplete="off">
+                    <input type="image" name="options" id="option6" src="img/muerto.png" autocomplete="off">
+                </label>
+            </div>
+        </div>
+
+        <!-- DIARREA -->
+        <div class="container-fluid justify-content-center row" id="div-diarrea">
+            <div class="btn-group btn-group-toggle col-6 row mt-3" data-toggle="buttons">
+                <h6 class="px-4 py-2 col-3">Diarrea</h6>
+                <label class="btn btn-secondary active">
+                    <input type="radio" name="options" id="option1" autocomplete="off">
+                    <input type="image" name="options" id="option1" src="img/sonriente.png" autocomplete="off" checked>
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option2" autocomplete="off">
+                    <input type="image" name="options" id="option2" src="img/sonrisa.png" autocomplete="off">
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option3" autocomplete="off">
+                    <input type="image" name="options" id="option3" src="img/confuso.png" autocomplete="off">
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option4" autocomplete="off">
+                    <input type="image" name="options" id="option4" src="img/triste.png" autocomplete="off">
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option5" autocomplete="off">
+                    <input type="image" name="options" id="option5" src="img/angustia.png" autocomplete="off">
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option6" autocomplete="off">
+                    <input type="image" name="options" id="option6" src="img/muerto.png" autocomplete="off">
+                </label>
+            </div>
+        </div>
+
+        <!-- DOLOR DE CABEZA -->
+        <div class="container-fluid justify-content-center row" id="div-dolorcabeza">
+            <div class="btn-group btn-group-toggle col-6 row mt-3" data-toggle="buttons">
+                <h6 class="px-4 py-2 col-3">Dolor de cabeza</h6>
+                <label class="btn btn-secondary active">
+                    <input type="radio" name="options" id="option1" autocomplete="off">
+                    <input type="image" name="options" id="option1" src="img/sonriente.png" autocomplete="off" checked>
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option2" autocomplete="off">
+                    <input type="image" name="options" id="option2" src="img/sonrisa.png" autocomplete="off">
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option3" autocomplete="off">
+                    <input type="image" name="options" id="option3" src="img/confuso.png" autocomplete="off">
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option4" autocomplete="off">
+                    <input type="image" name="options" id="option4" src="img/triste.png" autocomplete="off">
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option5" autocomplete="off">
+                    <input type="image" name="options" id="option5" src="img/angustia.png" autocomplete="off">
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option6" autocomplete="off">
+                    <input type="image" name="options" id="option6" src="img/muerto.png" autocomplete="off">
+                </label>
+            </div>
+        </div>
+
+        <!-- CANSANCIO -->
+        <div class="container-fluid justify-content-center row" id="div-cansancio">
+            <div class="btn-group btn-group-toggle col-6 row mt-3" data-toggle="buttons">
+                <h6 class="px-4 py-2 col-3">Cansancio</h6>
+                <label class="btn btn-secondary active">
+                    <input type="radio" name="options" id="option1" autocomplete="off">
+                    <input type="image" name="options" id="option1" src="img/sonriente.png" autocomplete="off" checked>
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option2" autocomplete="off">
+                    <input type="image" name="options" id="option2" src="img/sonrisa.png" autocomplete="off">
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option3" autocomplete="off">
+                    <input type="image" name="options" id="option3" src="img/confuso.png" autocomplete="off">
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option4" autocomplete="off">
+                    <input type="image" name="options" id="option4" src="img/triste.png" autocomplete="off">
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option5" autocomplete="off">
+                    <input type="image" name="options" id="option5" src="img/angustia.png" autocomplete="off">
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option6" autocomplete="off">
+                    <input type="image" name="options" id="option6" src="img/muerto.png" autocomplete="off">
+                </label>
+            </div>
+        </div>
+
+        <!-- DIFICULTAD PARA RESPIRAR -->
+        <div class="container-fluid justify-content-center row" id="div-difrespirar">
+            <div class="btn-group btn-group-toggle col-6 row mt-3" data-toggle="buttons">
+                <h6 class="px-4 py-2 col-3">Dificultad para respirar</h6>
+                <label class="btn btn-secondary active">
+                    <input type="radio" name="options" id="option1" autocomplete="off">
+                    <input type="image" name="options" id="option1" src="img/sonriente.png" autocomplete="off" checked>
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option2" autocomplete="off">
+                    <input type="image" name="options" id="option2" src="img/sonrisa.png" autocomplete="off">
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option3" autocomplete="off">
+                    <input type="image" name="options" id="option3" src="img/confuso.png" autocomplete="off">
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option4" autocomplete="off">
+                    <input type="image" name="options" id="option4" src="img/triste.png" autocomplete="off">
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option5" autocomplete="off">
+                    <input type="image" name="options" id="option5" src="img/angustia.png" autocomplete="off">
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option6" autocomplete="off">
+                    <input type="image" name="options" id="option6" src="img/muerto.png" autocomplete="off">
+                </label>
+            </div>
+        </div>
+
+        <!-- DESHIDRATACION -->
+        <div class="container-fluid justify-content-center row" id="div-deshidratacion">
+            <div class="btn-group btn-group-toggle col-6 row mt-3" data-toggle="buttons">
+                <h6 class="px-4 py-2 col-3">Deshidratación</h6>
+                <label class="btn btn-secondary active">
+                    <input type="radio" name="options" id="option1" autocomplete="off">
+                    <input type="image" name="options" id="option1" src="img/sonriente.png" autocomplete="off" checked>
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option2" autocomplete="off">
+                    <input type="image" name="options" id="option2" src="img/sonrisa.png" autocomplete="off">
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option3" autocomplete="off">
+                    <input type="image" name="options" id="option3" src="img/confuso.png" autocomplete="off">
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option4" autocomplete="off">
+                    <input type="image" name="options" id="option4" src="img/triste.png" autocomplete="off">
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option5" autocomplete="off">
+                    <input type="image" name="options" id="option5" src="img/angustia.png" autocomplete="off">
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option6" autocomplete="off">
+                    <input type="image" name="options" id="option6" src="img/muerto.png" autocomplete="off">
+                </label>
+            </div>
+        </div>
+
+        <!-- SUDORACION -->
+        <div class="container-fluid justify-content-center row" id="div-sudoracion">
+            <div class="btn-group btn-group-toggle col-6 row mt-3" data-toggle="buttons">
+                <h6 class="px-4 py-2 col-3">Sudoración</h6>
+                <label class="btn btn-secondary active">
+                    <input type="radio" name="options" id="option1" autocomplete="off">
+                    <input type="image" name="options" id="option1" src="img/sonriente.png" autocomplete="off" checked>
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option2" autocomplete="off">
+                    <input type="image" name="options" id="option2" src="img/sonrisa.png" autocomplete="off">
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option3" autocomplete="off">
+                    <input type="image" name="options" id="option3" src="img/confuso.png" autocomplete="off">
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option4" autocomplete="off">
+                    <input type="image" name="options" id="option4" src="img/triste.png" autocomplete="off">
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option5" autocomplete="off">
+                    <input type="image" name="options" id="option5" src="img/angustia.png" autocomplete="off">
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option6" autocomplete="off">
+                    <input type="image" name="options" id="option6" src="img/muerto.png" autocomplete="off">
+                </label>
+            </div>
+        </div>
+
+        <!-- HECES CON SANGRE -->
+        <div class="container-fluid justify-content-center row" id="div-hecsangre">
+            <div class="btn-group btn-group-toggle col-6 row mt-3" data-toggle="buttons">
+                <h6 class="px-4 py-2 col-3">Heces con sangre</h6>
+                <label class="btn btn-secondary active">
+                    <input type="radio" name="options" id="option1" autocomplete="off">
+                    <input type="image" name="options" id="option1" src="img/sonriente.png" autocomplete="off" checked>
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option2" autocomplete="off">
+                    <input type="image" name="options" id="option2" src="img/sonrisa.png" autocomplete="off">
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option3" autocomplete="off">
+                    <input type="image" name="options" id="option3" src="img/confuso.png" autocomplete="off">
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option4" autocomplete="off">
+                    <input type="image" name="options" id="option4" src="img/triste.png" autocomplete="off">
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option5" autocomplete="off">
+                    <input type="image" name="options" id="option5" src="img/angustia.png" autocomplete="off">
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option6" autocomplete="off">
+                    <input type="image" name="options" id="option6" src="img/muerto.png" autocomplete="off">
+                </label>
+            </div>
+        </div>
+
+        <!-- PIEL AMARILLA -->
+        <div class="container-fluid justify-content-center row" id="div-piamarilla">
+            <div class="btn-group btn-group-toggle col-6 row mt-3" data-toggle="buttons">
+                <h6 class="px-4 py-2 col-3">Piel amarilla</h6>
+                <label class="btn btn-secondary active">
+                    <input type="radio" name="options" id="option1" autocomplete="off">
+                    <input type="image" name="options" id="option1" src="img/sonriente.png" autocomplete="off" checked>
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option2" autocomplete="off">
+                    <input type="image" name="options" id="option2" src="img/sonrisa.png" autocomplete="off">
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option3" autocomplete="off">
+                    <input type="image" name="options" id="option3" src="img/confuso.png" autocomplete="off">
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option4" autocomplete="off">
+                    <input type="image" name="options" id="option4" src="img/triste.png" autocomplete="off">
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option5" autocomplete="off">
+                    <input type="image" name="options" id="option5" src="img/angustia.png" autocomplete="off">
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option6" autocomplete="off">
+                    <input type="image" name="options" id="option6" src="img/muerto.png" autocomplete="off">
+                </label>
+            </div>
+        </div>
+
+        <!-- PERDIDA DE APETITO -->
+        <div class="container-fluid justify-content-center row" id="div-perdapetito">
+            <div class="btn-group btn-group-toggle col-6 row mt-3" data-toggle="buttons">
+                <h6 class="px-4 py-2 col-3">Pérdida de apetito</h6>
+                <label class="btn btn-secondary active">
+                    <input type="radio" name="options" id="option1" autocomplete="off">
+                    <input type="image" name="options" id="option1" src="img/sonriente.png" autocomplete="off" checked>
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option2" autocomplete="off">
+                    <input type="image" name="options" id="option2" src="img/sonrisa.png" autocomplete="off">
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option3" autocomplete="off">
+                    <input type="image" name="options" id="option3" src="img/confuso.png" autocomplete="off">
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option4" autocomplete="off">
+                    <input type="image" name="options" id="option4" src="img/triste.png" autocomplete="off">
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option5" autocomplete="off">
+                    <input type="image" name="options" id="option5" src="img/angustia.png" autocomplete="off">
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option6" autocomplete="off">
+                    <input type="image" name="options" id="option6" src="img/muerto.png" autocomplete="off">
+                </label>
+            </div>
+        </div>
+
+        <!-- PERDIDA DE PESO -->
+        <div class="container-fluid justify-content-center row" id="div-perdpeso">
+            <div class="btn-group btn-group-toggle col-6 row mt-3" data-toggle="buttons">
+                <h6 class="px-4 py-2 col-3">Pérdida de peso</h6>
+                <label class="btn btn-secondary active">
+                    <input type="radio" name="options" id="option1" autocomplete="off">
+                    <input type="image" name="options" id="option1" src="img/sonriente.png" autocomplete="off" checked>
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option2" autocomplete="off">
+                    <input type="image" name="options" id="option2" src="img/sonrisa.png" autocomplete="off">
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option3" autocomplete="off">
+                    <input type="image" name="options" id="option3" src="img/confuso.png" autocomplete="off">
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option4" autocomplete="off">
+                    <input type="image" name="options" id="option4" src="img/triste.png" autocomplete="off">
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option5" autocomplete="off">
+                    <input type="image" name="options" id="option5" src="img/angustia.png" autocomplete="off">
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option6" autocomplete="off">
+                    <input type="image" name="options" id="option6" src="img/muerto.png" autocomplete="off">
+                </label>
+            </div>
+        </div>
+
+        <!-- ESTREÑIMIENTO -->
+        <div class="container-fluid justify-content-center row" id="div-estrenimiento">
+            <div class="btn-group btn-group-toggle col-6 row mt-3 mb-5" data-toggle="buttons">
+                <h6 class="px-4 py-2 col-3">Estreñimiento</h6>
+                <label class="btn btn-secondary active">
+                    <input type="radio" name="options" id="option1" autocomplete="off">
+                    <input type="image" name="options" id="option1" src="img/sonriente.png" autocomplete="off" checked>
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option2" autocomplete="off">
+                    <input type="image" name="options" id="option2" src="img/sonrisa.png" autocomplete="off">
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option3" autocomplete="off">
+                    <input type="image" name="options" id="option3" src="img/confuso.png" autocomplete="off">
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option4" autocomplete="off">
+                    <input type="image" name="options" id="option4" src="img/triste.png" autocomplete="off">
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option5" autocomplete="off">
+                    <input type="image" name="options" id="option5" src="img/angustia.png" autocomplete="off">
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option6" autocomplete="off">
+                    <input type="image" name="options" id="option6" src="img/muerto.png" autocomplete="off">
+                </label>
+            </div>
+        </div>
+        
+        <div class="container-fluid justify-content-center row mb-5">
+            <button class="btn btn-success btn-lg" id="btn-aceptar">Aceptar y continuar a diagnóstico</button>
+        </div>
+
+    </div>
+
+    <footer class="page-footer font-small py-3">
+        <div class="text-center pl-5">
+            <h4>PROYECTO FINAL - INTELIGENCIA ARTIFICIAL</h4>
+            <h6><b>Maestra:</b> Sandra Luz Canchola M.</h6>
+            <h6><b>Alumnos:</b> Emmanuel Salinas Celestino - 243007 <b>||</b> Io Judith Hid Coronel - 267869</h6>
+        </div>
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
