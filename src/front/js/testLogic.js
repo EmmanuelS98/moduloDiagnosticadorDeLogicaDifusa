@@ -1,10 +1,10 @@
 window.onload = init;
 var headers ={};
 var url = "http://localhost:3000";
-var tabla=new Array(10).fill(0);;
-var tbl =  new Array(10).fill(0);//las enfermedades //Modulo precargado
-var tablaVacia = new Array(10);
-var unifilaVacia = new Array(10).fill(0);
+var tabla=new Array(11).fill(0);;
+var tbl =  new Array(11).fill(0);//las enfermedades //Modulo precargado
+var tablaVacia = new Array(11);
+var unifilaVacia = new Array(11).fill(0);
 var testPaciente = new Array(15).fill(0);
 var enfermedadArray;
 var nombre;
@@ -42,7 +42,7 @@ function cargarDatos(){
     nombre = document.getElementById('inp-nombre').value;
 
     //for para comparacion
-    for( var i = 0; i< 10; i++){
+    for( var i = 0; i< 11; i++){
         for(var j = 0; j<14;j++){
             var numero = 0; //sirve para averiguar el menor entre la comparacion de tablas
         
@@ -55,16 +55,15 @@ function cargarDatos(){
     }
     maximo = Math.max.apply(null,unifilaVacia);
 
+    
+
     var cont=0;
     while(maximo!=unifilaVacia[cont]){
         cont=cont+ 1;
     }
         
     console.log("nombre: " + nombre);
-    console.log("testPaciente: " + testPaciente[0]);//lo que yo ingrese en arreglo
-    console.log("testPaciente: " + testPaciente[1]);//lo que yo ingrese en arreglo
-    console.log("testPaciente: " + testPaciente[2]);//lo que yo ingrese en arreglo
-    console.log("testPaciente: " + testPaciente[14]);//lo que yo ingrese en arreglo
+    console.log("testPaciente: " + testPaciente);//lo que yo ingrese en arreglo
     console.log("enfermedades:" + tabla[0]);
     console.log("tablaa :" + tablaVacia[0]);
     console.log("unifilavacia :" + unifilaVacia);
@@ -77,52 +76,71 @@ function cargarDatos(){
 function getDiagnostico(id){    
     console.log(id)
     console.log(id+1)
-    axios.get(url + `/test/enfermedades/${id+1}/`).then(function(res){
+
+
+    if(id != 0){
+        axios.get(url + `/test/enfermedades/${id+1}/`).then(function(res){
         
-        enfermedadArray =  res.data.message;
-        postResult()
+            enfermedadArray =  res.data.message;
+            console.log("getDiagnostico" + enfermedadArray[0].enfermedad);
+            console.log("getDiagnostico" + enfermedadArray[0].tratamiento)
+            postResult()
+                
+        }).catch(function(err){
+            console.log(err);
+        });
+    }else{
+        axios.get(url + `/test/enfermedades/${11}/`).then(function(res){
         
-    }).catch(function(err){
-        console.log(err);
-    });
+            enfermedadArray =  res.data.message;
+            console.log("getDiagnostico" + enfermedadArray[0].enfermedad);
+            console.log("getDiagnostico" + enfermedadArray[0].tratamiento)
+            postResult()
+                
+        }).catch(function(err){
+            console.log(err);
+        });
+    }
 }
 
 
 function postResult(){
+    
     axios.post(url + "/test/enfermedades/" , {
         
         nombre_paciente: nombre,
-        fiebre: testPaciente[0],
-        escalofrios: testPaciente[1],
-        nauseas:testPaciente[2],
-        vomito:testPaciente[3],
-        diarrea:testPaciente[4],
-        dolor_cabeza:testPaciente[5],
-        cansancio:testPaciente[6],
-        dificultad_respirar:testPaciente[7],
-        deshidratacion:testPaciente[8],
-        sudoracion:testPaciente[9],
-        heces_sangre:testPaciente[10],
-        piel_amarilla:testPaciente[11],
-        perdida_apetito:testPaciente[12],
-        perdida_peso:testPaciente[13],
-        estrenimiento:testPaciente[14],
+        fiebre: testPaciente[0].toString(),
+        escalofrios: testPaciente[1].toString(),
+        nauseas: testPaciente[2].toString(),
+        vomito: testPaciente[3].toString(),
+        diarrea: testPaciente[4].toString(),
+        dolor_cabeza: testPaciente[5].toString(),
+        cansancio: testPaciente[6].toString(),
+        dificultad_respirar: testPaciente[7].toString(),
+        deshidratacion: testPaciente[8].toString(),
+        sudoracion: testPaciente[9].toString(),
+        heces_sangre: testPaciente[10].toString(),
+        piel_amarilla: testPaciente[11].toString(),
+        perdida_apetito: testPaciente[12].toString(),
+        perdida_peso: testPaciente[13].toString(),
+        estrenimiento: testPaciente[14].toString(),
         diagnostico: enfermedadArray[0].enfermedad,
         tratamiento: enfermedadArray[0].tratamiento,
-
-    },headers).then(function(res){
+    
+    },headers).then(function (res) {
         console.log(res);
         alert("Paciente Diagnosticado con Exito")
         //window.location.href= "./test_detail.html"
-    }).catch(function(err){
+    }).catch(function (err) {
         console.log(err);
         alert("Campos incompletos");
     });
+    
 }
   
 
 function op1(sintoma){
-    testPaciente[sintoma] = 0
+    testPaciente[sintoma] = 0.0
     console.log(testPaciente);
 }
 function op2(sintoma){
