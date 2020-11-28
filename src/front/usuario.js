@@ -25,9 +25,9 @@ function init(){
 }
 
 function loadUser(){
-    console.log("holaaaaaaaaaaaaaaaaaaaaa");
+    
     axios.get(url + "/inicio/").then(function(res){
-        console.log('es aqui');
+        
         displayUser(res.data.message);
         pacientes = res.data.message;
 
@@ -91,6 +91,4 @@ function displayUser(user){
 
     }
 
-
-    
 }

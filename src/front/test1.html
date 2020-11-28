@@ -26,69 +26,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">Ingresa tus datos:</span>
             </div>
-            <input type="text" aria-label="First name" class="form-control" placeholder="Nombre y apellido">
-            </div>
-        </div>
-
-        <div class="container-fluid justify-content-center row">
-            <div class="input-group col-6 mb-5 p-4 alert-success justify-content-center rounded-lg">
-                <p>Selecciona las enfermedades que desees tomar en cuenta en tu diagnóstico:</p>
-                <div class="form-check col-4 justify-content-center" id="check">
-                  <input class="form-check-input" type="checkbox" value="" id="Check1">
-                  <label class="form-check-label" for="defaultCheck1">
-                    Gastroenteritis
-                  </label>
-                  <br>
-                  <input class="form-check-input" type="checkbox" value="" id="Check2">
-                  <label class="form-check-label" for="defaultCheck1">
-                    Neumonía
-                  </label>
-                  <br>
-                  <input class="form-check-input" type="checkbox" value="" id="Check3">
-                  <label class="form-check-label" for="defaultCheck1">
-                    Cólera
-                  </label>
-                  <br>
-                  <input class="form-check-input" type="checkbox" value="" id="Check4">
-                  <label class="form-check-label" for="defaultCheck1">
-                    Dengue
-                  </label>
-                  <br>
-                  <input class="form-check-input" type="checkbox" value="" id="Check5">
-                  <label class="form-check-label" for="defaultCheck1">
-                    Malaria
-                  </label>
-                  <br>
-                  <input class="form-check-input" type="checkbox" value="" id="Check6">
-                  <label class="form-check-label" for="defaultCheck1">
-                    Fiebre tifoidea
-                  </label>
-                  <br>
-                  <input class="form-check-input" type="checkbox" value="" id="Check7">
-                  <label class="form-check-label" for="defaultCheck1">
-                    Hepatitis A
-                  </label>
-                  <br>
-                  <input class="form-check-input" type="checkbox" value="" id="Check8">
-                  <label class="form-check-label" for="defaultCheck1">
-                    Hepatitis B
-                  </label>
-                  <br>
-                  <input class="form-check-input" type="checkbox" value="" id="Check9">
-                  <label class="form-check-label" for="defaultCheck1">
-                    COVID-19
-                  </label>
-                  <br>
-                  <input class="form-check-input" type="checkbox" value="" id="Check10">
-                  <label class="form-check-label" for="defaultCheck1">
-                    VIH
-                  </label>
-                  <br>
-                  <input class="form-check-input" type="checkbox" value="" id="Check11">
-                  <label class="form-check-label" for="defaultCheck1">
-                    Marcar todas
-                  </label>
-                </div>
+            <input type="text" aria-label="First name" class="form-control" placeholder="Nombre y apellido" id="inp-nombre">
             </div>
         </div>
 
@@ -116,8 +54,8 @@
             </div>
         </div>
         
-         <!-- FIEBRE --> 
-         <div class="container-fluid justify-content-center row" id="div-fiebre">
+        <!-- FIEBRE --> 
+        <div class="container-fluid justify-content-center row" id="div-fiebre">
             <div class="btn-group btn-group-toggle col-6 row" data-toggle="buttons">
                 <h6 class="px-4 py-2 col-3">Fiebre</h6>
                 <label class="btn btn-secondary " id="op1_fiebre" onclick="op1(0)">
@@ -600,12 +538,5 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script>
-        $(function(){
-        $('#defaultCheck11').change(function() {
-          $('#check > input[type=checkbox]').prop('checked', $(this).is(':checked'));
-        });
-      });
-    </script>
   </body>
 </html>
