@@ -22,5 +22,5 @@ app.use("/test",test);
 app.use(notFound);
 
 app.listen(process.env.PORT || port, () => {
-  console.log(`server is running`)
-})
+  console.log(`server is running`);
+});

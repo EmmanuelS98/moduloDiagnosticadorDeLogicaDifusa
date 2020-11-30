@@ -9,10 +9,15 @@ var testPaciente = new Array(15).fill(0);
 var enfermedadArray;
 var nombre;
 
+var opcionesUsuario = new Array(10).fill(0);//para el analisis especifico
+
+
+
+
+
 
 for( var i = 0; i< tablaVacia.length;i++){
     tablaVacia[i] = new Array(15).fill(0);
-    
 }//en este for se crea una tabla vacia de 10 x 15 para la comparacion de las enfermedades
 
 
@@ -24,7 +29,7 @@ function getEnfermedades(){
     axios.get(url + "/test/enfermedades/").then(function(res){
         
         tbl = res.data.message;
-        
+    
         for(var i = 0; i< tbl.length;i++){
             for(var j = 0; j< 14;j++){
                 tabla[i]= Object.values(tbl[i]);
@@ -39,6 +44,18 @@ function cargarDatos(){
     
     var suma = 0;
     var maximo = 0;
+
+    var selection = 0;//variable para saber cuantas enfermedades selecciono el usuario, servira para crear un array
+
+    for(var i = 0; i<opcionesUsuario.length;i++){
+        if(opcionesUsuario[i]==1){
+            selection++;
+        }
+    }
+
+    
+
+
     nombre = document.getElementById('inp-nombre').value;
 
     //for para comparacion
@@ -55,21 +72,10 @@ function cargarDatos(){
     }
     maximo = Math.max.apply(null,unifilaVacia);
 
-    
-
     var cont=0;
     while(maximo!=unifilaVacia[cont]){
         cont=cont+ 1;
     }
-        
-    console.log("nombre: " + nombre);
-    console.log("testPaciente: " + testPaciente);//lo que yo ingrese en arreglo
-    console.log("enfermedades:" + tabla[0]);
-    console.log("tablaa :" + tablaVacia[0]);
-    console.log("unifilavacia :" + unifilaVacia);
-    console.log("maximo" + maximo);
-    console.log("enfermedad: " + maximo + " cont:" + cont);
-
     getDiagnostico(cont);
 }
 
@@ -82,8 +88,6 @@ function getDiagnostico(id){
         axios.get(url + `/test/enfermedades/${id+1}/`).then(function(res){
         
             enfermedadArray =  res.data.message;
-            console.log("getDiagnostico" + enfermedadArray[0].enfermedad);
-            console.log("getDiagnostico" + enfermedadArray[0].tratamiento)
             postResult()
                 
         }).catch(function(err){
@@ -93,8 +97,6 @@ function getDiagnostico(id){
         axios.get(url + `/test/enfermedades/${11}/`).then(function(res){
         
             enfermedadArray =  res.data.message;
-            console.log("getDiagnostico" + enfermedadArray[0].enfermedad);
-            console.log("getDiagnostico" + enfermedadArray[0].tratamiento)
             postResult()
                 
         }).catch(function(err){
@@ -130,7 +132,7 @@ function postResult(){
     },headers).then(function (res) {
         console.log(res);
         alert("Paciente Diagnosticado con Exito")
-        //window.location.href= "./test_detail.html"
+        window.location.href= "./test_detail.html"
     }).catch(function (err) {
         console.log(err);
         alert("Campos incompletos");
@@ -162,4 +164,23 @@ function op5(sintoma){
 function op6(sintoma){
     testPaciente[sintoma] = 1
     console.log(testPaciente);
+}
+
+
+function escuchar(numero){
+    //console.log(document.getElementById("Check1").onchange);
+    if(numero != 11){
+        if(document.getElementById(`Check${numero}`).checked==true){
+            opcionesUsuario[numero-1] = 1;
+        }else{
+            opcionesUsuario[numero-1] = 0;
+        } 
+    }else{
+
+        if(document.getElementById(`Check${numero}`).checked==true){
+            opcionesUsuario.fill(1);
+        }else{
+            opcionesUsuario.fill(0);
+        } 
+    }
 }

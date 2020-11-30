@@ -7,29 +7,19 @@ var nombre;
 
 function init(){
     
-    /* if(localStorage.getItem("token")){ 
-        headers ={
-            headers:{
-               'Authorization': "bearer " + localStorage.getItem("token") 
-            }
-        }
         loadUser();
-
-        document.querySelector('#bSearchName').addEventListener('click', loadUserByName);
-        document.querySelector('#logOut').addEventListener('click', logOut);
-    }
-    else{ */
-        loadUser();
-        document.querySelector('#bSearchName').addEventListener('click', loadUserByName);
-   // }
+        //document.querySelector('#bSearchName').addEventListener('click', loadUserByName);
+   
 }
 
 function loadUser(){
     
     axios.get(url + "/inicio/").then(function(res){
-        
-        displayUser(res.data.message);
+        localStorage.removeItem('identificador');
         pacientes = res.data.message;
+        localStorage.setItem("identificador", pacientes[pacientes.length-1].id +1);
+        displayUser(res.data.message);
+        
 
     }).catch(function(err){
         console.log(err);
@@ -71,8 +61,7 @@ function displayUser(user){
                                     <td class="user_mail">'${user[i].diagnostico}'</td>
                                     <td class="user_dateJoin">'${user[i].dateTest}'</td>
                                     <td class="user_accion">
-                                        <a href="test_detail.html" type="button" class="modificar">Detalles</a>
-                                    
+                                        <input type="button" value="Detalles del Tes" class="modificar" onClick='testDetail(${user[i].id})'>
                                     </td>
                                 </tr>`;
         }
@@ -85,10 +74,15 @@ function displayUser(user){
                                 <td class="user_mail">'${user[0].diagnostico}'</td>
                                 <td class="user_dateJoin">'${user[0].dateTest}'</td>
                                 <td class="user_accion">
-                                    <a href="test_detail.html" type="button" class="modificar">Detalles</a>
+                                    <input type="button" value="Detalles del Tes" class="modificar" onClick='testDetail(${user[i].id})'>
                                 </td>
                             </tr>`;        
 
     }
 
+}
+
+function testDetail(id){
+    localStorage.setItem("identificador", id);
+    window.location.href = "test_detail.html";
 }

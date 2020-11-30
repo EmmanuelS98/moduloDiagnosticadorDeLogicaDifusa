@@ -24,4 +24,19 @@ inicio.get("/:name([A-Za-z]+)", async(req,  res, next)=>{
         
     }
 });
+
+inicio.get('/:id([0-9]{1,3})', async(req,res,next)=>{
+    const id = req.params.id;
+    console.log("-------------");
+    if(id > 0 ){
+        const user = await db.query(`SELECT * FROM pacientes WHERE id ='${id}';`);
+        
+        return res.status(200).json({code:1 , message:user})
+    }
+    
+    return res.status(404).json({code: 404, message: "paciente no encontrado"});
+    
+});
+
+
 module.exports = inicio;

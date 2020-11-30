@@ -23,7 +23,7 @@ test.get('/enfermedades/:id([0-9]{1,3})/', async(req,res,next)=>{
         return res.status(200).json({code:1 , message:user})
     }
     
-    return res.status(404).json({code: 404, message: "usuario no encontrado"});
+    return res.status(404).json({code: 404, message: "enfermedad no encontrado"});
     
 });
 

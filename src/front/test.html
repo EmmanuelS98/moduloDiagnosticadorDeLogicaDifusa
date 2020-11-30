@@ -19,7 +19,9 @@
   </head>
   <body>
     <div class="nav nav-fill justify-content-center py-4" style="background-color:#68a6b4;color:#fff;">
-        <h1>SINTOMATOLOGÍA DE LAS ENFERMEDADES VIRALES</h1>
+        <h1>MODULO DIAGNOSTICADOR DE ENFERMEDADES VIRALES</h1>
+        <a href="inicio.html"><input type="image" class="homereturn" src="img/home.png"></a>
+        
     </div>
     <div class="container-fluid justify-content-center row py-4">
         <div class="input-group col-6 my-1">
@@ -32,59 +34,61 @@
 
         <div class="container-fluid justify-content-center row">
             <div class="input-group col-6 mb-5 p-4 alert-success justify-content-center rounded-lg">
-                <p>Selecciona las enfermedades que desees tomar en cuenta en tu diagnóstico:</p>
+                <p>Este modulo diagnosticador busca entre las siguientes 10 enfermedades.<br>
+                Selecciona aquellas enfermedades que desees tomar en cuenta en tu diagnóstico, 
+                salta a lo siguiente si quieres que se tomen en cuenta todas las enfermedades.</p>
                 <div class="form-check col-4 justify-content-center" id="check">
-                  <input class="form-check-input" type="checkbox" value="" id="Check1">
+                  <input class="form-check-input" type="checkbox" value="" id="Check1" onclick="escuchar(1)">
                   <label class="form-check-label" for="defaultCheck1">
                     Gastroenteritis
                   </label>
                   <br>
-                  <input class="form-check-input" type="checkbox" value="" id="Check2">
+                  <input class="form-check-input" type="checkbox" value="" id="Check2" onclick="escuchar(2)">
                   <label class="form-check-label" for="defaultCheck1">
                     Neumonía
                   </label>
                   <br>
-                  <input class="form-check-input" type="checkbox" value="" id="Check3">
+                  <input class="form-check-input" type="checkbox" value="" id="Check3" onclick="escuchar(3)">
                   <label class="form-check-label" for="defaultCheck1">
                     Cólera
                   </label>
                   <br>
-                  <input class="form-check-input" type="checkbox" value="" id="Check4">
+                  <input class="form-check-input" type="checkbox" value="" id="Check4" onclick="escuchar(4)">
                   <label class="form-check-label" for="defaultCheck1">
                     Dengue
                   </label>
                   <br>
-                  <input class="form-check-input" type="checkbox" value="" id="Check5">
+                  <input class="form-check-input" type="checkbox" value="" id="Check5" onclick="escuchar(5)">
                   <label class="form-check-label" for="defaultCheck1">
                     Malaria
                   </label>
                   <br>
-                  <input class="form-check-input" type="checkbox" value="" id="Check6">
+                  <input class="form-check-input" type="checkbox" value="" id="Check6" onclick="escuchar(6)">
                   <label class="form-check-label" for="defaultCheck1">
                     Fiebre tifoidea
                   </label>
                   <br>
-                  <input class="form-check-input" type="checkbox" value="" id="Check7">
+                  <input class="form-check-input" type="checkbox" value="" id="Check7" onclick="escuchar(7)">
                   <label class="form-check-label" for="defaultCheck1">
                     Hepatitis A
                   </label>
                   <br>
-                  <input class="form-check-input" type="checkbox" value="" id="Check8">
+                  <input class="form-check-input" type="checkbox" value="" id="Check8" onclick="escuchar(8)">
                   <label class="form-check-label" for="defaultCheck1">
                     Hepatitis B
                   </label>
                   <br>
-                  <input class="form-check-input" type="checkbox" value="" id="Check9">
+                  <input class="form-check-input" type="checkbox" value="" id="Check9" onclick="escuchar(9)">
                   <label class="form-check-label" for="defaultCheck1">
                     COVID-19
                   </label>
                   <br>
-                  <input class="form-check-input" type="checkbox" value="" id="Check10">
+                  <input class="form-check-input" type="checkbox" value="" id="Check10" onclick="escuchar(10)">
                   <label class="form-check-label" for="defaultCheck1">
                     VIH
                   </label>
                   <br>
-                  <input class="form-check-input" type="checkbox" value="" id="Check11">
+                  <input class="form-check-input" type="checkbox" value="" id="Check11" onclick="escuchar(11)">
                   <label class="form-check-label" for="defaultCheck1">
                     Marcar todas
                   </label>
@@ -602,7 +606,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script>
         $(function(){
-        $('#defaultCheck11').change(function() {
+        $('#Check11').change(function() {
           $('#check > input[type=checkbox]').prop('checked', $(this).is(':checked'));
         });
       });
