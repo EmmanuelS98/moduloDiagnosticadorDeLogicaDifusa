@@ -2,13 +2,23 @@ window.onload = init;
 var headers ={};
 var url = "http://localhost:3000";
 var tabla=new Array(11).fill(0);;
-var tbl =  new Array(11).fill(0);//las enfermedades //Modulo precargad
+var tbl =  new Array(11).fill(0);//las enfermedades //Modulo precargado
+var tablaVacia = new Array(11);
+var unifilaVacia = new Array(11).fill(0);
 var testPaciente = new Array(15).fill(0);
 var enfermedadArray;
 var nombre;
 
-var opcionesUsuario = new Array(10).fill(0);//para el analisis especifico te dice que enfermedades escogio
+var opcionesUsuario = new Array(10).fill(0);//para el analisis especifico
 
+
+
+
+
+
+for( var i = 0; i< tablaVacia.length;i++){
+    tablaVacia[i] = new Array(15).fill(0);
+}//en este for se crea una tabla vacia de 10 x 15 para la comparacion de las enfermedades
 
 
 function init(){
@@ -25,7 +35,6 @@ function getEnfermedades(){
                 tabla[i]= Object.values(tbl[i]);
             }
         }
-        
     }).catch(function(err){
         console.log(err);
     });
@@ -35,44 +44,26 @@ function cargarDatos(){
     
     var suma = 0;
     var maximo = 0;
+
     var selection = 0;//variable para saber cuantas enfermedades selecciono el usuario, servira para crear un array
-    nombre = document.getElementById('inp-nombre').value;
 
     for(var i = 0; i<opcionesUsuario.length;i++){
         if(opcionesUsuario[i]==1){
             selection++;
         }
     }
-    var arrayop = new Array(selection).fill(0); //nueva tabla para especifico
 
-    for( var i = 0; i< arrayop.length;i++){
-        arrayop[i] = new Array(15).fill(0);
-    }//se genera un arreglo vacio de las enfermedades que el usuario eligio
+    
 
-    var cont = 0;
-    for(var y = 0; y<opcionesUsuario.length; y++){
-        if(opcionesUsuario[y]==1){
-            for(var j = 0; j<14;j++){
-                arrayop[cont][j] = tabla[y][j];
-            }    
-            cont = cont +1;
-        }
-    }
-    if(selection ==0){
-        alert("Campos incompletos");
-        window.location.href= "./test.html"
-    }
-    var tablaVacia = new Array(selection);
-    var unifilaVacia = new Array(selection).fill(0);
 
-    for( var i = 0; i< tablaVacia.length;i++){
-        tablaVacia[i] = new Array(15).fill(0);
-    }//en este for se crea una tabla vacia de 10 x 15 para la comparacion de las enfermedades
+    nombre = document.getElementById('inp-nombre').value;
+
     //for para comparacion
-    for( var i = 0; i < selection; i++){
+    for( var i = 0; i< 11; i++){
         for(var j = 0; j<14;j++){
             var numero = 0; //sirve para averiguar el menor entre la comparacion de tablas
-            numero=Math.min(testPaciente[j], arrayop[i][j]);//se calcula el minimo entre el paciente y la tabla de enfermedades
+        
+            numero=Math.min(testPaciente[j], tabla[i][j]);//se calcula el minimo entre el paciente y la tabla de enfermedades
             tablaVacia[i][j] = numero;//tabla de minimos entre enfermedades vs usuario
             suma = suma + numero;//la suma de cada fila
         }
@@ -80,23 +71,12 @@ function cargarDatos(){
         suma = 0;
     }
     maximo = Math.max.apply(null,unifilaVacia);
-    var cont1=0;
-    while(maximo!=unifilaVacia[cont1]){
-        cont1=cont1+ 1;
-        if(cont1 > 15){
-            break;
-        }
+
+    var cont=0;
+    while(maximo!=unifilaVacia[cont]){
+        cont=cont+ 1;
     }
-    var enc = 0;
-    for(var i = 0; i< opcionesUsuario.length; i++){
-        if(opcionesUsuario[i] == 1){
-            enc=enc + 1;
-            if(enc == cont1){
-                getDiagnostico(i);
-            }
-        } 
-    }
-    getDiagnostico(cont1);
+    getDiagnostico(cont);
 }
 
 function getDiagnostico(id){    
@@ -152,7 +132,7 @@ function postResult(){
     },headers).then(function (res) {
         console.log(res);
         alert("Paciente Diagnosticado con Exito")
-        //window.location.href= "./test_detail.html"
+        window.location.href= "./test_detail.html"
     }).catch(function (err) {
         console.log(err);
         alert("Campos incompletos");
