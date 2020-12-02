@@ -1,24 +1,16 @@
 window.onload = init;
 var headers ={};
 var url = "http://localhost:3000";
-var tabla=new Array(11).fill(0);;
-var tbl =  new Array(11).fill(0);//las enfermedades //Modulo precargado
-var tablaVacia = new Array(11);
-var unifilaVacia = new Array(11).fill(0);
-var testPaciente = new Array(15).fill(0);
-var enfermedadArray;
-var nombre;
+var tbl =  new Array(11).fill(0);//las enfermedades //Modulo precargado//aqui es recuperado en forma de objeto
+var tabla=new Array(11).fill(0);;//este sera el modulo precargado en forma de arreglos
+var tablaVacia;// = new Array(11);//esta tabla servira para ir comparando lo del ususario con el modulo
+var unifilaVacia;// = new Array(11).fill(0);//aqui se obtendra la suma de la tabla anterior
+var testPaciente = new Array(15).fill(0);//este es el test del paciente
+var enfermedadArray;//este es el diagnostico
+var nombre;// este es el nombre
 
 var opcionesUsuario = new Array(10).fill(0);//para el analisis especifico
 
-
-
-
-
-
-for( var i = 0; i< tablaVacia.length;i++){
-    tablaVacia[i] = new Array(15).fill(0);
-}//en este for se crea una tabla vacia de 10 x 15 para la comparacion de las enfermedades
 
 
 function init(){
@@ -42,53 +34,152 @@ function getEnfermedades(){
 
 function cargarDatos(){
     
-    var suma = 0;
-    var maximo = 0;
+    if(document.getElementById('Check1').checked==false && document.getElementById('Check2').checked==false &&
+    document.getElementById('Check3').checked==false && document.getElementById('Check4').checked==false && 
+    document.getElementById('Check5').checked==false && document.getElementById('Check6').checked==false && 
+    document.getElementById('Check7').checked==false && document.getElementById('Check8').checked==false&& 
+    document.getElementById('Check9').checked==false && document.getElementById('Check10').checked==false &&
+    document.getElementById('Check11').checked==false){
+        opcionesUsuario.fill(1);
+    }
 
+    var suma = 0;//suma de  cada fila de la tabla comparativa
+    var maximo = 0; //el valor maximo de unifila vacia
     var selection = 0;//variable para saber cuantas enfermedades selecciono el usuario, servira para crear un array
 
+    nombre = document.getElementById('inp-nombre').value;
+    
     for(var i = 0; i<opcionesUsuario.length;i++){
         if(opcionesUsuario[i]==1){
             selection++;
         }
     }
 
-    
-
-
-    nombre = document.getElementById('inp-nombre').value;
-
-    //for para comparacion
-    for( var i = 0; i< 11; i++){
-        for(var j = 0; j<14;j++){
-            var numero = 0; //sirve para averiguar el menor entre la comparacion de tablas
+    console.log(selection);
+    //analisis general
+    if(selection == 10){
         
-            numero=Math.min(testPaciente[j], tabla[i][j]);//se calcula el minimo entre el paciente y la tabla de enfermedades
-            tablaVacia[i][j] = numero;//tabla de minimos entre enfermedades vs usuario
-            suma = suma + numero;//la suma de cada fila
-        }
-        unifilaVacia[i]= suma;//la suma de los elementos de cada fila son sumados y puestos en arreglo
-        suma = 0;
-    }
-    maximo = Math.max.apply(null,unifilaVacia);
+        tablaVacia = new Array(11);//esta tabla servira para ir comparando lo del ususario con el modulo
+        unifilaVacia = new Array(11).fill(0);//aqui se obtendra la suma de la tabla anterior
 
-    var cont=0;
-    while(maximo!=unifilaVacia[cont]){
-        cont=cont+ 1;
+
+        for( var i = 0; i< tablaVacia.length;i++){
+            tablaVacia[i] = new Array(15).fill(0);
+        }//en este for se crea una tabla vacia de 10 x 15 para la comparacion de las enfermedades
+
+        //for para comparacion
+        for( var i = 0; i< 11; i++){
+            for(var j = 0; j<14;j++){
+                var numero = 0; //sirve para averiguar el menor entre la comparacion de tablas
+            
+                numero=Math.min(testPaciente[j], tabla[i][j]);//se calcula el minimo entre el paciente y la tabla de enfermedades
+                tablaVacia[i][j] = numero;//tabla de minimos entre enfermedades vs usuario
+                suma = suma + numero;//la suma de cada fila
+            }
+            unifilaVacia[i]= suma;//la suma de los elementos de cada fila son sumados y puestos en arreglo
+            suma = 0;
+        }
+    
+        console.log(unifilaVacia);
+        maximo = Math.max.apply(null,unifilaVacia);
+        console.log(maximo);
+    
+    
+        var cont=0;
+        
+        while(maximo!=unifilaVacia[cont]){
+            cont=cont+ 1;
+        }
+        console.log()
+    
+        getDiagnostico(cont);    
     }
-    getDiagnostico(cont);
+    //analisis especifico
+    else{
+        var arrayop = new Array(selection).fill(0); //se crea una nueva 
+
+        console.log('seleccion'+selection);
+        console.log(arrayop);
+
+        tablaVacia = new Array(selection).fill(0);
+        unifilaVacia = new Array(selection).fill(0);
+        for( var i = 0; i< tablaVacia.length;i++){
+            tablaVacia[i] = new Array(15).fill(0);
+        }//en este for se crea una tabla vacia de 10 x 15 para la comparacion de las enfermedades
+
+
+        for( var i = 0; i< arrayop.length;i++){
+            arrayop[i] = new Array(15).fill(0);
+        } //se genera un arreglo vacio de las enfermedades que el usuario eligio
+        
+        //aqui se obtiene la tabla de las enfermedades que el usuario selecciono
+        var cont = 0;
+        for(var i = 0; i<opcionesUsuario.length; i++){
+            if(opcionesUsuario[i]==1){
+                for(var j = 0; j<14;j++){
+                    arrayop[cont][j] = tabla[i][j];
+                }    
+                cont = cont +1;
+            }   
+        }
+        console.log("--------------");
+
+        //for para comparacion
+        for( var i = 0; i< selection; i++){
+            for(var j = 0; j<14;j++){
+                var numero = 0; //sirve para averiguar el menor entre la comparacion de tablas
+            
+                numero=Math.min(testPaciente[j], arrayop[i][j]);//se calcula el minimo entre el paciente y la tabla de enfermedades
+                tablaVacia[i][j] = numero;//tabla de minimos entre enfermedades vs usuario
+                suma = suma + numero;//la suma de cada fila
+            }
+            unifilaVacia[i]= suma;//la suma de los elementos de cada fila son sumados y puestos en arreglo
+            suma = 0;
+        }
+        maximo = Math.max.apply(null,unifilaVacia);
+        console.log('maximo'+maximo);
+        console.log('tabla' +arrayop);
+        var cont1=0;
+        while(maximo!=unifilaVacia[cont1]){
+            cont1=cont1+ 1;
+        }
+        console.log(cont1);
+
+        var enc = 0;
+
+
+        let total = testPaciente.reduce((a, b) => a + b, 0);
+        if(total==0){
+            getDiagnostico(0);
+
+        }else{
+            for(var i = 0; i< opcionesUsuario.length; i++){
+                if(opcionesUsuario[i] == 1){
+                    if(enc == cont1){
+                        getDiagnostico(i);
+                    }
+                    enc=enc + 1;
+                    
+                } 
+            }
+        }
+
+        
+
+    }
+
+    
 }
 
 function getDiagnostico(id){    
-    console.log(id)
-    console.log(id+1)
-
+    
 
     if(id != 0){
         axios.get(url + `/test/enfermedades/${id+1}/`).then(function(res){
         
             enfermedadArray =  res.data.message;
             postResult()
+            console.log(enfermedadArray[0].enfermedad)
                 
         }).catch(function(err){
             console.log(err);
@@ -98,6 +189,7 @@ function getDiagnostico(id){
         
             enfermedadArray =  res.data.message;
             postResult()
+            console.log(enfermedadArray[0].enfermedad)
                 
         }).catch(function(err){
             console.log(err);
@@ -172,15 +264,19 @@ function escuchar(numero){
     if(numero != 11){
         if(document.getElementById(`Check${numero}`).checked==true){
             opcionesUsuario[numero-1] = 1;
+            console.log(opcionesUsuario);
         }else{
             opcionesUsuario[numero-1] = 0;
+            console.log(opcionesUsuario);
         } 
     }else{
 
         if(document.getElementById(`Check${numero}`).checked==true){
             opcionesUsuario.fill(1);
+            console.log(opcionesUsuario);
         }else{
             opcionesUsuario.fill(0);
+            console.log(opcionesUsuario);
         } 
     }
 }

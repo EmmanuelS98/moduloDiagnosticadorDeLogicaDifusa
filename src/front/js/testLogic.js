@@ -96,7 +96,7 @@ function cargarDatos(){
             }
         } 
     }
-    getDiagnostico(cont1);
+    //getDiagnostico(cont1);
 }
 
 function getDiagnostico(id){    
@@ -152,7 +152,7 @@ function postResult(){
     },headers).then(function (res) {
         console.log(res);
         alert("Paciente Diagnosticado con Exito")
-        //window.location.href= "./test_detail.html"
+        window.location.href= "./test_detail.html"
     }).catch(function (err) {
         console.log(err);
         alert("Campos incompletos");

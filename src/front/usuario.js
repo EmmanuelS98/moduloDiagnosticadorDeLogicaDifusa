@@ -56,12 +56,12 @@ function displayUser(user){
         tbody.innerHTML = tbodyVacio;
         for(var i = 0; i < user.length; i++){
             tbody.innerHTML += ` <tr>
-                                    <td class="user_id">${user[i].id}</td>
+                                    <td class="user_id">${i+1}</td>
                                     <td class="user_name">'${user[i].nombre_paciente}'</td>
                                     <td class="user_mail">'${user[i].diagnostico}'</td>
                                     <td class="user_dateJoin">'${user[i].dateTest}'</td>
                                     <td class="user_accion">
-                                        <input type="button" value="Detalles del Tes" class="modificar" onClick='testDetail(${user[i].id})'>
+                                        <input type="button" value="Detalles del Test" class="modificar" onClick='testDetail(${user[i].id})'>
                                     </td>
                                 </tr>`;
         }
@@ -69,12 +69,12 @@ function displayUser(user){
     if(user.length === 1){
         tbody.innerHTML = tbodyVacio;
         tbody.innerHTML += ` <tr>
-                                <td class="user_id">${user[0].id}</td>
+                                <td class="user_id">${i+1}</td>
                                 <td class="user_name">'${user[0].nombre_paciente}'</td>
                                 <td class="user_mail">'${user[0].diagnostico}'</td>
                                 <td class="user_dateJoin">'${user[0].dateTest}'</td>
                                 <td class="user_accion">
-                                    <input type="button" value="Detalles del Tes" class="modificar" onClick='testDetail(${user[i].id})'>
+                                    <input type="button" value="Detalles del Test" class="modificar" onClick='testDetail(${user[i].id})'>
                                 </td>
                             </tr>`;        
 
